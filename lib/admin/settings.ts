@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getSupabaseServerClient } from "@/lib/supabase/serverClient";
-import { getAdminUser } from "@/lib/admin/auth";
+import { getAdminUser, isAdminEmail } from "@/lib/admin/auth";
 
 /**
  * Fails open: if Supabase isn't configured, or the settings row can't be
@@ -41,4 +41,11 @@ export async function setRegistrationEnabled(enabled: boolean): Promise<void> {
 
   revalidatePath("/admin");
   revalidatePath("/account");
+}
+
+/** Server Action wrapper — reads ADMIN_EMAILS (a server-only env var), so
+ *  the dedicated admin login page can check an email client-side without
+ *  that allowlist itself ever reaching the browser. */
+export async function checkIsAdminEmail(email: string): Promise<boolean> {
+  return isAdminEmail(email);
 }

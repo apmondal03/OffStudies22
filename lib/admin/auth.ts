@@ -17,6 +17,12 @@ function getAdminEmails(): string[] {
     .filter(Boolean);
 }
 
+/** Exported so other checks (like the registration-pause gate) can exempt
+ *  admin emails without duplicating the allowlist-parsing logic. */
+export function isAdminEmail(email: string): boolean {
+  return getAdminEmails().includes(email.trim().toLowerCase());
+}
+
 export interface AdminUser {
   id: string;
   email: string;
