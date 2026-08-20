@@ -27,7 +27,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   const admin = await getAdminUser();
   if (!admin) {
-    redirect("/account");
+    redirect("/admin-login");
   }
 
   const mfaStatus = await getMfaStatus();

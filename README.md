@@ -149,6 +149,36 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Dedicated admin login (`/admin-login`) — a real bug fix
+
+A genuine bug, not a hypothetical: pausing new sign-ins (the registration
+toggle above) used to block the admin out of `/admin` too, since both
+flows shared the same `/account` page and the pause check had no idea who
+was trying to sign in. Turning off public sign-ups locked the one person
+who actually needed to keep signing in.
+
+**Fixed by giving admin sign-in its own page, entirely separate from
+general sign-in**, rather than teaching `/account` to make exceptions for
+specific emails:
+- `/account` stays exactly as it was — a clean, absolute "sign-ins are
+  paused" when the toggle is off, no exceptions, no admin-specific logic
+  mixed into the general public flow.
+- `/admin-login` is a new, separate page that **never checks the pause
+  toggle at all** — it doesn't apply to this flow by construction, not by
+  a bypass rule layered on top of the general one.
+- It does check the entered email against `ADMIN_EMAILS` before sending
+  anything (`checkIsAdminEmail` in `lib/admin/settings.ts`, a thin Server
+  Action wrapper around `lib/admin/auth.ts`'s allowlist) — so this page
+  can't be used to create arbitrary new accounts as a side door around the
+  pause, even by someone who's found the URL.
+- `app/admin/layout.tsx` and both MFA pages (`/mfa-setup`, `/mfa-verify`)
+  now redirect an unauthenticated visitor to `/admin-login`, not
+  `/account` — the general sign-in page is genuinely the wrong place to
+  send someone trying to reach the admin dashboard.
+- Lives outside `/app/admin/` as a flat top-level route, same reason as
+  the MFA pages: nesting it under the layout that itself redirects
+  unauthenticated visitors elsewhere would create a redirect loop.
+
 ## Two-factor authentication for /admin (`/mfa-setup`, `/mfa-verify`)
 
 TOTP-based 2FA (Google Authenticator, Authy, 1Password, etc.) layered

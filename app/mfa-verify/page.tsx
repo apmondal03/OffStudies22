@@ -5,7 +5,7 @@ import { MfaVerifyForm } from "@/components/admin/MfaVerifyForm";
 
 export default async function MfaVerifyPage() {
   const admin = await getAdminUser();
-  if (!admin) redirect("/account");
+  if (!admin) redirect("/admin-login");
 
   const status = await getMfaStatus();
   if (status === "not-enrolled") redirect("/mfa-setup");
