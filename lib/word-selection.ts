@@ -43,7 +43,7 @@ function poolForFilter(ctx: SelectionContext): WordSummary[] {
 }
 
 /**
- * Picks the next word to show in the Word Stream: prefers words due for
+ * Picks the next word to show in the Study Radio: prefers words due for
  * spaced-repetition review (see lib/spacedRepetition.ts), biased away from
  * words shown in the last few picks so the same word doesn't reappear too
  * soon; falls back to random selection within the active filter when

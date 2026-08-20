@@ -149,6 +149,111 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Advanced 1500 (`/advanced`, `lib/dictionary/advancedList.ts`)
+
+A deliberately **separate** word list from Core 3000, not an extension of
+it — Core 3000 was just renamed specifically to mean "the curated ~3,000-
+word A1-B2 essentials," and folding C1/C2 words into that same list would
+make the name immediately wrong. Same shape and lookup pattern as
+`coreList.ts` (`getAdvancedEntryBySlug`, `getAdvancedEntriesByWord`,
+`searchAdvancedList`), so every piece of code that already understands a
+`WordSummary` works with this list unchanged.
+
+**Current state: a first batch of 156 words (106 C1, 50 C2), not the full
+~1,500-word target.** CEFR-level assignment gets genuinely fuzzier at the
+advanced end — different bodies classify C1 vs. C2 slightly differently,
+unlike a verifiable fact — so this shipped as a careful, honest first slice
+rather than rushing 1,500 words with less confidence per entry. Every word
+in this batch was validated programmatically against the full existing
+2,997-word Core 3000 before shipping (zero overlap — word lists from
+different sources always share common headwords, since the most frequent
+English words are the most frequent English words regardless of whose
+list you're looking at; that's expected, not a duplication concern).
+Extending this to the full ~1,500 is real, scoped follow-up work.
+
+Homepage search now checks both lists — Core 3000 results lead (the more
+likely match for most queries), Advanced 1500 fills any remaining
+suggestion slots, capped at 8 total suggestions either way.
+
+## Rebrand & renames
+
+The product is now **OffStudies**, not Lexicon — every user-facing reference
+updated (header, footer, page titles/metadata, Kids Mode and Young Learners
+headers, About/Quiz/Search copy). `package.json`'s internal `name` field
+was deliberately left as `vocab-app` — that's a project identifier, not
+user-facing branding, and changing it risks a deployment config mismatch
+for no real benefit.
+
+Two feature renames, chosen to better match what each thing actually does:
+- **"Word Stream" → "Study Radio"** — "Stream" implied something actively
+  scrolled or browsed; the feature actually auto-advances on its own timer
+  while you do nothing, which "radio" (turn it on, let it play) describes
+  far better. Deliberately not "Word Radio" — the Stream/Study Radio
+  already spans all 6 adult modules via its toggle (Vocabulary, Phrasal
+  Verbs, Grammar, Idioms, Prepositions, Encyclopedia), so a name centered
+  on "Word" would misrepresent it.
+- **"Explore" → "Core 3000"** — states plainly that this page is the
+  curated 3,000-word subset, not the whole dictionary, which "Explore" left
+  ambiguous now that word-page search reaches any real English word.
+
+## Word page improvements
+
+- **A persistent search bar** on every word detail page (`/word/[slug]`) —
+  previously search only lived on the homepage, so navigating to a word
+  page and wanting to look up something else meant going back first.
+- **Synonyms and antonyms are now real hyperlinks** to their own word
+  pages (`components/dictionary/LinkablePills.tsx`), not plain text.
+  Deliberately unconditional — every synonym/antonym links out, rather
+  than only linking ones that happen to match the Core 3000 list, since
+  `/word/[slug]` already resolves any real English word via the network
+  dictionary, not just Core 3000. Collocations, common phrases, and word
+  family stay as plain (non-linked) pills, since those are frequently
+  multi-word phrases where a direct word-page link would often just 404 —
+  linking those would read as broken far more often than synonyms/antonyms
+  do.
+- **Related phrasal verbs and idioms** now appear on word pages
+  (`components/dictionary/RelatedPhrasalVerbsAndIdiomsSection.tsx`,
+  `lib/dictionary/wordCrossLinks.ts`) — computed, not stored, same pattern
+  as the existing Encyclopedia cross-links. A phrasal verb is related when
+  the word is its `baseVerb` ("give" → give up, give in, give away, give
+  back, give out, give up on — a precise match, not fuzzy text
+  co-occurrence); an idiom is related when the word appears as a whole
+  word inside it ("time" → "in the nick of time," "time flies," but not
+  "timeline"). Verified directly against the real datasets before
+  shipping, not just structurally — the matching logic returns exactly
+  the expected sets.
+
+## Registration toggle (`/admin`)
+
+An admin-controlled kill switch for new account sign-ups
+(`lib/admin/settings.ts`, one row in a new `app_settings` table) —
+addresses a real resource-management concern: without it, anyone visiting
+`/account` can create an account, consuming Supabase's free-tier auth
+limits. Toggling it off only blocks **new** sign-in attempts; anyone
+already signed in keeps working normally, and it fails open (registration
+stays enabled) if the settings table can't be read for any reason, so a
+misconfiguration can never accidentally lock everyone out.
+
+## Listing page pagination (`hooks/usePagination.ts`)
+
+Every listing page (`/explore`, and the pattern ready to extend to Grammar,
+Idioms, Phrasal Verbs, Prepositions, Encyclopedia) now caps how many cards
+render at once — "Show more" reveals another batch, rather than rendering
+the entire filtered result set immediately. Extracted into a shared hook
++ `ShowMoreButton` component so this is one implementation, not five
+near-copies; the hook automatically resets to the first page whenever the
+filtered count changes, so switching a filter never leaves "Show more"
+looking stale.
+
+**Worth being direct about a real limit here**: this makes the *rendered*
+list bounded, but doesn't change what data reaches the browser — the full
+filtered dataset is still sent to the client, "Show more" just controls
+how much of it is displayed. True protection against bulk-copying a full
+list requires **server-side pagination** (the server only ever sends the
+current page, search/filtering run server-side) — a genuinely different,
+larger architecture change than this pass, tracked as a real next step
+rather than something this already solves.
+
 ## Admin content management (`/admin`)
 
 A real, form-based way to add content without writing code or deploying —
