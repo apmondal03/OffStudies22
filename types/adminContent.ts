@@ -8,7 +8,7 @@
  * admin side too.
  */
 
-export type AdminFieldType = "text" | "textarea" | "list" | "select" | "emoji";
+export type AdminFieldType = "text" | "textarea" | "list" | "select" | "emoji" | "image";
 
 export interface AdminFieldOption {
   value: string;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { AdminFieldDef } from "@/types/adminContent";
 
 interface GenericEntryFormProps {
@@ -96,6 +97,33 @@ export function GenericEntryForm({ fields, action, submitLabel, initial }: Gener
                 placeholder={field.placeholder}
                 className="w-full max-w-[120px] rounded-xl border border-border-strong bg-surface px-4 py-2.5 text-lg outline-none focus:border-accent"
               />
+            )}
+
+            {field.type === "image" && (
+              <div>
+                {defaultValue && (
+                  <div className="mb-3">
+                    <Image
+                      src={defaultValue}
+                      alt=""
+                      width={240}
+                      height={160}
+                      unoptimized
+                      className="h-40 w-auto max-w-full rounded-xl border border-border object-cover"
+                    />
+                    <p className="mt-1 text-xs text-ink-faint">Current image — upload a new one to replace it.</p>
+                  </div>
+                )}
+                <input
+                  id={inputId}
+                  name={field.key}
+                  type="file"
+                  accept="image/*"
+                  className="block w-full text-sm file:mr-4 file:rounded-full file:border-0 file:bg-accent-soft file:px-4 file:py-2 file:text-sm file:font-medium file:text-accent-strong"
+                />
+                {/* Carries the current URL forward if no new file is chosen. */}
+                <input type="hidden" name={`${field.key}__existing`} defaultValue={defaultValue} />
+              </div>
             )}
 
             {field.type === "text" && (

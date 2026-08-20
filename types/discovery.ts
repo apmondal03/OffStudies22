@@ -31,6 +31,10 @@ export interface DiscoveryEntry {
   category: DiscoveryCategory;
   name: string;
   emoji: string;
+  /** Optional — admin-added entries can attach a real photo. Falls back to
+   *  the emoji badge treatment everywhere when not set, so the 150
+   *  built-in entries (which don't have one) render exactly as before. */
+  imageUrl?: string;
   /** One short sentence — Kids Mode. */
   simpleFact: string;
   /** 3-4 fuller facts — Young Learners. */

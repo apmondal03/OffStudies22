@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Sparkles, Link2 } from "lucide-react";
 import { DISCOVERY_CATEGORY_LABEL } from "@/types/discovery";
@@ -16,17 +17,34 @@ export function EncyclopediaCard({
 
   return (
     <div>
-      <div className="flex items-start gap-4">
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-4xl leading-none">
-          {entry.emoji}
-        </span>
-        <div className="pt-1">
-          <p className="text-xs uppercase tracking-widest text-accent font-medium mb-1.5">
+      {entry.imageUrl ? (
+        <div className="mb-5">
+          <Image
+            src={entry.imageUrl}
+            alt={entry.name}
+            width={640}
+            height={220}
+            unoptimized
+            className="h-44 sm:h-52 w-full rounded-2xl object-cover"
+          />
+          <p className="mt-4 text-xs uppercase tracking-widest text-accent font-medium mb-1.5">
             {DISCOVERY_CATEGORY_LABEL[entry.category]}
           </p>
           <h1 className="font-display text-4xl sm:text-5xl tracking-tight leading-tight">{entry.name}</h1>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-start gap-4">
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-4xl leading-none">
+            {entry.emoji}
+          </span>
+          <div className="pt-1">
+            <p className="text-xs uppercase tracking-widest text-accent font-medium mb-1.5">
+              {DISCOVERY_CATEGORY_LABEL[entry.category]}
+            </p>
+            <h1 className="font-display text-4xl sm:text-5xl tracking-tight leading-tight">{entry.name}</h1>
+          </div>
+        </div>
+      )}
 
       <ul className="mt-7 space-y-4">
         {entry.facts.map((fact, i) => (
