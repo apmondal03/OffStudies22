@@ -151,3 +151,33 @@ create policy "Authenticated users can update app settings"
 create trigger app_settings_set_updated_at
   before update on public.app_settings
   for each row execute function public.set_updated_at();
+
+-- ===================================================================
+-- Storage: content images (Encyclopedia entry photos, and any future
+-- module that adds an "image" field)
+-- ===================================================================
+-- Public bucket — images need to be readable by any visitor without
+-- signing in, since they're rendered on public content pages. Only
+-- signed-in users can upload/replace/delete, same baseline-safety-net
+-- pattern used everywhere else (real admin-only enforcement is the
+-- ADMIN_EMAILS check in lib/admin/auth.ts, at the application layer).
+
+insert into storage.buckets (id, name, public)
+values ('content-images', 'content-images', true)
+on conflict (id) do nothing;
+
+create policy "Anyone can view content images"
+  on storage.objects for select
+  using (bucket_id = 'content-images');
+
+create policy "Authenticated users can upload content images"
+  on storage.objects for insert
+  with check (bucket_id = 'content-images' and auth.uid() is not null);
+
+create policy "Authenticated users can update content images"
+  on storage.objects for update
+  using (bucket_id = 'content-images' and auth.uid() is not null);
+
+create policy "Authenticated users can delete content images"
+  on storage.objects for delete
+  using (bucket_id = 'content-images' and auth.uid() is not null);

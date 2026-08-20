@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getAdminUser } from "@/lib/admin/auth";
+import { getMfaStatus } from "@/lib/admin/mfa";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 
 export const metadata: Metadata = {
@@ -27,6 +28,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const admin = await getAdminUser();
   if (!admin) {
     redirect("/account");
+  }
+
+  const mfaStatus = await getMfaStatus();
+  if (mfaStatus === "not-enrolled") {
+    redirect("/mfa-setup");
+  }
+  if (mfaStatus === "needs-verification") {
+    redirect("/mfa-verify");
   }
 
   return (
