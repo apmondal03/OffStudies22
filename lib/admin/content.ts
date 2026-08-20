@@ -21,10 +21,33 @@ function slugify(text: string): string {
 }
 
 /** Parses raw FormData into a JSON object using the module's field schema —
- *  the one place that knows "list" fields are newline-separated text. */
-function parseFormData(fields: AdminFieldDef[], formData: FormData): Record<string, unknown> {
+ *  the one place that knows "list" fields are newline-separated text, and
+ *  "image" fields need a file uploaded to Storage rather than read as text. */
+async function parseFormData(
+  fields: AdminFieldDef[],
+  formData: FormData,
+  supabase: NonNullable<Awaited<ReturnType<typeof getSupabaseServerClient>>>
+): Promise<Record<string, unknown>> {
   const data: Record<string, unknown> = {};
   for (const field of fields) {
+    if (field.type === "image") {
+      const file = formData.get(field.key);
+      if (file instanceof File && file.size > 0) {
+        const path = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "-")}`;
+        const { error } = await supabase.storage.from("content-images").upload(path, file, {
+          contentType: file.type,
+        });
+        if (error) throw new Error(`Image upload failed: ${error.message}`);
+        const { data: urlData } = supabase.storage.from("content-images").getPublicUrl(path);
+        data[field.key] = urlData.publicUrl;
+      } else {
+        // No new file selected — keep whatever image was already there
+        // (the form carries the current URL in a hidden fallback field).
+        data[field.key] = String(formData.get(`${field.key}__existing`) ?? "");
+      }
+      continue;
+    }
+
     const raw = String(formData.get(field.key) ?? "").trim();
     if (field.type === "list") {
       data[field.key] = raw
@@ -116,7 +139,7 @@ export async function createAdminEntry(moduleId: string, formData: FormData) {
   const supabase = await getSupabaseServerClient();
   if (!supabase) throw new Error("Accounts aren't configured on this deployment.");
 
-  const data = parseFormData(adminModule.fields, formData);
+  const data = await parseFormData(adminModule.fields, formData, supabase);
   validate(adminModule.fields, data);
 
   const slugSource = String(data[adminModule.slugSourceField] ?? "");
@@ -142,7 +165,7 @@ export async function updateAdminEntry(id: string, moduleId: string, formData: F
   const supabase = await getSupabaseServerClient();
   if (!supabase) throw new Error("Accounts aren't configured on this deployment.");
 
-  const data = parseFormData(adminModule.fields, formData);
+  const data = await parseFormData(adminModule.fields, formData, supabase);
   validate(adminModule.fields, data);
 
   const slugSource = String(data[adminModule.slugSourceField] ?? "");

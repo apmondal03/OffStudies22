@@ -149,6 +149,82 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Two-factor authentication for /admin (`/mfa-setup`, `/mfa-verify`)
+
+TOTP-based 2FA (Google Authenticator, Authy, 1Password, etc.) layered
+**specifically on top of** the existing magic-link sign-in, not a
+replacement for it. Magic-link stays the only sign-in method for
+everyone — simplest, zero password-security surface — but reaching
+`/admin` now additionally requires a verified 6-digit code this session.
+
+**Why layered rather than a password+2FA rebuild**: the admin account is
+now effectively the only account that matters (general registration is
+off), which genuinely raises the value of protecting it with two real
+factors — but a full password system adds its own risk surface (password
+strength, reset flows, breach exposure) that a TOTP-only layer avoids
+entirely. This gets the actual security benefit (two independent factors:
+"something you have," the email inbox, plus "something you have," the
+authenticator device) without touching the simpler flow every other
+sign-in still uses.
+
+**How it works** (`lib/admin/mfa.ts`, Supabase Auth's built-in MFA API):
+- Signs in via magic link as before → `app/admin/layout.tsx` now also
+  checks the session's Authenticator Assurance Level (AAL).
+- **No TOTP factor enrolled yet** → redirected to `/mfa-setup` (one-time):
+  scan a QR code, enter the code it generates to confirm enrollment.
+- **Enrolled, but this session hasn't verified a code yet** (e.g. a fresh
+  sign-in) → redirected to `/mfa-verify`: enter the current code, no
+  re-enrollment needed.
+- **Already verified this session** → `/admin` renders normally.
+- Both new pages live **outside** `/app/admin/` deliberately — if they
+  were nested under the same layout that enforces the AAL check, the
+  redirect would loop on itself.
+
+**What I could and couldn't verify from here**: `tsc`/`eslint`/build all
+pass, and the redirect chain was confirmed working correctly with
+Supabase unconfigured (graceful redirects, no crash) — but the actual QR
+enrollment → scan → verify flow needs a real Supabase project and a real
+authenticator app, neither of which this sandbox has access to. That
+needs to be tested live once deployed.
+
+**Setup**: no new SQL — Supabase's MFA API works out of the box once
+Supabase itself is configured. Just sign in at `/account` as before, and
+you'll be walked through `/mfa-setup` automatically the first time you
+try to reach `/admin`.
+
+## Encyclopedia image upload (`/admin/encyclopedia`)
+
+A new `"image"` field type in the central admin schema (`types/adminContent.ts`)
+— a real photo an admin uploads (e.g., AI-generated), stored in Supabase
+Storage, shown larger on the article page than the emoji-only treatment
+every other entry uses.
+
+- **Genuinely optional and additive** — `DiscoveryEntry.imageUrl` is
+  optional; the 150 built-in entries and every admin entry that hasn't set
+  one render exactly as before (small emoji badge next to the title).
+  Adding an image swaps to a larger banner (h-44 on mobile, h-52 on larger
+  screens — "a bit larger, not too large," per the ask that shaped this)
+  above the title instead.
+- **A public storage bucket** (`content-images` — new section in
+  `supabase/schema.sql`), since images render on public pages and need to
+  be readable without signing in. Only signed-in users can upload/replace/
+  delete, same baseline-safety-net pattern as everything else (real
+  admin-only enforcement is the `ADMIN_EMAILS` check at the app layer).
+- **Editing preserves the existing image if you don't upload a new one** —
+  the form carries the current URL forward in a hidden field, so re-saving
+  an entry without touching the photo field doesn't accidentally clear it.
+- Uses `next/image` with `unoptimized` deliberately, rather than
+  configuring Next's image optimizer for a specific Supabase project's
+  hostname — that would hardcode one person's project URL into the app,
+  breaking for anyone with a different one.
+- **Scoped to Encyclopedia only for now** — the field type itself is
+  generic and any module could add an `"image"` field the same way, but
+  only Encyclopedia's registry entry does yet.
+
+**Setup**, once Supabase is already configured: run the new "Storage:
+content images" section of `supabase/schema.sql` in the SQL Editor (or the
+whole file, if you're re-running it fresh).
+
 ## Advanced 1500 (`/advanced`, `lib/dictionary/advancedList.ts`)
 
 A deliberately **separate** word list from Core 3000, not an extension of
@@ -170,6 +246,13 @@ different sources always share common headwords, since the most frequent
 English words are the most frequent English words regardless of whose
 list you're looking at; that's expected, not a duplication concern).
 Extending this to the full ~1,500 is real, scoped follow-up work.
+
+**Design consistency fix**: the page originally shipped with its own,
+simpler card layout (word + level badge only, 3-column grid, no A-Z index)
+that visibly didn't match Core 3000's richer one (word + part of speech +
+level, 4-column grid, sticky A-Z rail). Rebuilt to use the exact same card
+markup and layout as Core 3000, rather than each page evolving its own
+slightly-different version of the same idea.
 
 Homepage search now checks both lists — Core 3000 results lead (the more
 likely match for most queries), Advanced 1500 fills any remaining

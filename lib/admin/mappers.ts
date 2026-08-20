@@ -22,6 +22,7 @@ export function toDiscoveryEntry(row: RawEntry): DiscoveryEntry {
     category: str(row.data, "category") as DiscoveryCategory,
     name: str(row.data, "name"),
     emoji: str(row.data, "emoji") || "📚",
+    imageUrl: str(row.data, "image") || undefined,
     simpleFact: str(row.data, "simpleFact"),
     facts: list(row.data, "facts"),
     funFact: str(row.data, "funFact") || undefined,

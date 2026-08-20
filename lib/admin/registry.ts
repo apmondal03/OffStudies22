@@ -46,6 +46,12 @@ export const ADMIN_MODULES: AdminModuleDef[] = [
       },
       { key: "emoji", label: "Emoji", type: "emoji", placeholder: "🐋" },
       {
+        key: "image",
+        label: "Photo",
+        type: "image",
+        help: "Optional — shown larger on the article page instead of the emoji. A square or landscape photo works best.",
+      },
+      {
         key: "simpleFact",
         label: "Simple fact",
         type: "text",
