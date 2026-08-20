@@ -7,8 +7,9 @@ import { Moon, Sun, Menu, X, BookMarked, Search, UserCircle } from "lucide-react
 import { useTheme } from "./ThemeProvider";
 
 const NAV_LINKS = [
-  { href: "/explore", label: "Explore" },
-  { href: "/stream", label: "Word Stream" },
+  { href: "/explore", label: "Core 3000" },
+  { href: "/advanced", label: "Advanced 1500" },
+  { href: "/stream", label: "Study Radio" },
   { href: "/phrasal-verbs", label: "Phrasal Verbs" },
   { href: "/grammar", label: "Grammar" },
   { href: "/idioms", label: "Idioms" },
@@ -32,9 +33,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/75">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="Lexicon home">
+        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="OffStudies home">
           <BookMarked className="h-5 w-5 text-accent" strokeWidth={1.75} aria-hidden="true" />
-          <span className="font-display text-xl tracking-tight">Lexicon</span>
+          <span className="font-display text-xl tracking-tight">OffStudies</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Primary">

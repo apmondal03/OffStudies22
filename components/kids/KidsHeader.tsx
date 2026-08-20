@@ -25,7 +25,7 @@ export function KidsHeader() {
         <div className="mx-auto flex h-20 max-w-5xl items-center justify-between px-4 sm:px-6">
           <Link href="/kids" className="flex items-center gap-2" aria-label="Kids Mode home">
             <span className="text-3xl">🦉</span>
-            <span className="kids-display text-2xl font-bold text-[var(--kids-ink)]">Lexicon Kids</span>
+            <span className="kids-display text-2xl font-bold text-[var(--kids-ink)]">OffStudies Kids</span>
           </Link>
 
           <div className="flex items-center gap-2 sm:gap-3">

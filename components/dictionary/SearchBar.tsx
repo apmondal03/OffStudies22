@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, Clock } from "lucide-react";
 import { searchCoreList } from "@/lib/dictionary/coreList";
+import { searchAdvancedList } from "@/lib/dictionary/advancedList";
 import { addRecentSearch, getRecentSearches } from "@/lib/storage";
 import { CefrBadge } from "@/components/ui/CefrBadge";
 import type { CEFRLevel } from "@/types/dictionary";
@@ -29,7 +30,12 @@ export function SearchBar({ size = "default", placeholder = "Search the dictiona
 
   const suggestions = useMemo(() => {
     if (!query.trim()) return [];
-    return searchCoreList(query, 8);
+    // Core 3000 results lead, since they're the far more likely match for
+    // most searches — Advanced 1500 fills any remaining slots.
+    const core = searchCoreList(query, 8);
+    if (core.length >= 8) return core;
+    const advanced = searchAdvancedList(query, 8 - core.length);
+    return [...core, ...advanced];
   }, [query]);
 
   const showRecent = query.trim().length === 0 && recent.length > 0;

@@ -1,4 +1,5 @@
 import type { WordEntry } from "@/types/dictionary";
+import { LinkablePills } from "@/components/dictionary/LinkablePills";
 
 function Section({
   title,
@@ -101,13 +102,13 @@ export function SynonymsAntonymsSection({ entry }: { entry: WordEntry }) {
         {entry.synonyms && entry.synonyms.length > 0 && (
           <div>
             <p className="text-xs uppercase tracking-wide text-ink-faint mb-2">Synonyms</p>
-            <Pills items={entry.synonyms} />
+            <LinkablePills items={entry.synonyms} />
           </div>
         )}
         {entry.antonyms && entry.antonyms.length > 0 && (
           <div>
             <p className="text-xs uppercase tracking-wide text-ink-faint mb-2">Antonyms</p>
-            <Pills items={entry.antonyms} />
+            <LinkablePills items={entry.antonyms} />
           </div>
         )}
       </div>
