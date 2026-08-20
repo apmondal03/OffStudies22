@@ -29,14 +29,15 @@ export function useAuth() {
     return () => subscription.subscription.unsubscribe();
   }, []);
 
-  const signInWithEmail = useCallback(async (email: string) => {
+  const signInWithEmail = useCallback(async (email: string, redirectPath = "/account") => {
     const supabase = getSupabaseBrowserClient();
     if (!supabase) return { error: "Accounts aren't set up yet." };
 
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: typeof window !== "undefined" ? `${window.location.origin}/account` : undefined,
+        emailRedirectTo:
+          typeof window !== "undefined" ? `${window.location.origin}${redirectPath}` : undefined,
       },
     });
     return { error: error?.message ?? null };

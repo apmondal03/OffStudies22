@@ -179,6 +179,20 @@ specific emails:
   the MFA pages: nesting it under the layout that itself redirects
   unauthenticated visitors elsewhere would create a redirect loop.
 
+**A second bug, found immediately after shipping the first fix**: the
+magic-link email itself redirects to a fixed URL baked in when it's sent
+(`emailRedirectTo`) — and that was hardcoded to `/account` inside
+`hooks/useAuth.ts`'s `signInWithEmail`, regardless of which page initiated
+the sign-in. So even with `/admin-login` correctly gating *who* could sign
+in, clicking the resulting email link still landed the admin on the
+general `/account` page instead of continuing on toward `/admin` (and
+from there, into the MFA flow). Fixed by giving `signInWithEmail` an
+optional `redirectPath` parameter (default `/account`, unchanged for the
+general sign-in page) — `/admin-login` now explicitly passes `/admin`, so
+the email link continues the admin flow correctly, letting `/admin`'s own
+existing AAL check take over from there and route to `/mfa-setup` or
+`/mfa-verify` as needed.
+
 ## Two-factor authentication for /admin (`/mfa-setup`, `/mfa-verify`)
 
 TOTP-based 2FA (Google Authenticator, Authy, 1Password, etc.) layered
