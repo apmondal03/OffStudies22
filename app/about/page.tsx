@@ -4,7 +4,7 @@ import { CORE_3000 } from "@/lib/dictionary/coreList";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "What Lexicon is, how the Core 3000 and Word Stream work, and where the dictionary data comes from.",
+  description: "What OffStudies is, how the Core 3000 and Study Radio work, and where the dictionary data comes from.",
 };
 
 export default function AboutPage() {
@@ -17,11 +17,11 @@ export default function AboutPage() {
 
       <div className="space-y-8 text-ink-muted leading-relaxed">
         <p>
-          Lexicon combines a clear, modern English dictionary with a focused vocabulary-learning
+          OffStudies combines a clear, modern English dictionary with a focused vocabulary-learning
           layer. Instead of asking you to manage flashcard decks or review schedules, it offers two
           simple habits: look words up when you&apos;re curious, and let the{" "}
           <Link href="/stream" className="text-accent hover:underline underline-offset-4">
-            Word Stream
+            Study Radio
           </Link>{" "}
           bring a new word to you automatically.
         </p>
@@ -40,7 +40,7 @@ export default function AboutPage() {
         </div>
 
         <div>
-          <h2 className="font-display text-2xl text-ink mb-2">The Word Stream</h2>
+          <h2 className="font-display text-2xl text-ink mb-2">Study Radio</h2>
           <p>
             Start the stream and one word appears at a time, on a timer you control — 15 seconds to
             90. Pause, skip, or go back whenever you like, and mark words as saved, known, or

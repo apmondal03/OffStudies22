@@ -3,8 +3,8 @@ import { YoungHeader } from "@/components/youngLearners/YoungHeader";
 
 export const metadata: Metadata = {
   title: {
-    default: "Lexicon Learners — English Practice for Young Readers",
-    template: "%s | Lexicon Learners",
+    default: "OffStudies Learners — English Practice for Young Readers",
+    template: "%s | OffStudies Learners",
   },
   description: "Sight words and simple grammar practice for young readers, ages 7-12.",
 };

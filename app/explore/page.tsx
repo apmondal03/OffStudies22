@@ -6,12 +6,13 @@ import Link from "next/link";
 import { CORE_3000 } from "@/lib/dictionary/coreList";
 import { CefrBadge } from "@/components/ui/CefrBadge";
 import { EmptyList } from "@/components/ui/States";
+import { ShowMoreButton } from "@/components/ui/ShowMoreButton";
+import { usePagination } from "@/hooks/usePagination";
 import type { CEFRLevel, WordSummary } from "@/types/dictionary";
 import { listPublicAdminEntries } from "@/lib/admin/content";
 
 const LEVELS: (CEFRLevel | "ALL")[] = ["ALL", "A1", "A2", "B1", "B2"];
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("");
-const PAGE_SIZE = 60;
 
 const POS_OPTIONS = [
   "ALL",
@@ -37,7 +38,6 @@ function ExplorePageInner() {
   const [pos, setPos] = useState<string>("ALL");
   const [letter, setLetter] = useState<string | null>(null);
   const [query, setQuery] = useState("");
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [adminWords, setAdminWords] = useState<WordSummary[]>([]);
 
   useEffect(() => {
@@ -69,20 +69,17 @@ function ExplorePageInner() {
     });
   }, [allWords, level, pos, letter, query]);
 
+  const { visibleCount, showMore, hasMore, remaining } = usePagination(filtered.length);
   const visible = filtered.slice(0, visibleCount);
   const availableLetters = useMemo(() => {
     const set = new Set(allWords.map((w) => w.word[0]?.toLowerCase()));
     return set;
   }, [allWords]);
 
-  function resetPage() {
-    setVisibleCount(PAGE_SIZE);
-  }
-
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 sm:py-14">
       <p className="text-xs uppercase tracking-widest text-accent font-medium mb-2">Core 3000</p>
-      <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">Explore the vocabulary</h1>
+      <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">The essential 3,000 words</h1>
       <p className="text-ink-muted max-w-xl mb-8">
         {filtered.length.toLocaleString()} of {allWords.length.toLocaleString()} words shown.
       </p>
@@ -94,7 +91,6 @@ function ExplorePageInner() {
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
-            resetPage();
           }}
           placeholder="Filter by word…"
           aria-label="Filter words"
@@ -104,7 +100,6 @@ function ExplorePageInner() {
           value={pos}
           onChange={(e) => {
             setPos(e.target.value);
-            resetPage();
           }}
           aria-label="Filter by part of speech"
           className="rounded-xl border border-border-strong bg-surface px-4 py-2.5 text-sm outline-none focus:border-accent"
@@ -126,7 +121,6 @@ function ExplorePageInner() {
             aria-selected={level === lvl}
             onClick={() => {
               setLevel(lvl);
-              resetPage();
             }}
             className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
               level === lvl
@@ -163,17 +157,7 @@ function ExplorePageInner() {
             </ul>
           )}
 
-          {visibleCount < filtered.length && (
-            <div className="mt-8 text-center">
-              <button
-                type="button"
-                onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                className="rounded-full border border-border-strong px-6 py-2.5 text-sm font-medium hover:border-accent hover:text-accent transition-colors"
-              >
-                Show more ({filtered.length - visibleCount} remaining)
-              </button>
-            </div>
-          )}
+          {hasMore && <ShowMoreButton remaining={remaining} onClick={showMore} />}
         </div>
 
         {/* A–Z thumb-index rail */}
@@ -182,7 +166,6 @@ function ExplorePageInner() {
             type="button"
             onClick={() => {
               setLetter(null);
-              resetPage();
             }}
             aria-pressed={letter === null}
             className={`h-6 w-6 rounded text-[10px] font-mono flex items-center justify-center ${
@@ -200,7 +183,6 @@ function ExplorePageInner() {
                 disabled={disabled}
                 onClick={() => {
                   setLetter(l);
-                  resetPage();
                 }}
                 aria-pressed={letter === l}
                 className={`h-6 w-6 rounded text-[10px] font-mono uppercase flex items-center justify-center transition-colors ${

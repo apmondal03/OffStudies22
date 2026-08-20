@@ -22,7 +22,7 @@ const FEATURES = [
   },
   {
     icon: Clock,
-    title: "The Word Stream",
+    title: "Study Radio",
     body: "Words arrive on their own schedule — no reviewing, no flashcards to manage. Just look up occasionally and let it run.",
   },
   {
@@ -49,8 +49,8 @@ export default function HomePage() {
             Remember them.
           </h1>
           <p className="mt-6 text-lg text-ink-muted leading-relaxed max-w-xl">
-            Lexicon pairs a clear, modern dictionary with the Core 3000 — the essential
-            words of English — and the Word Stream, an ambient way to meet a new word
+            OffStudies pairs a clear, modern dictionary with the Core 3000 — the essential
+            words of English — and Study Radio, an ambient way to meet a new word
             every thirty seconds without lifting a finger.
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-20">
         <div className="rounded-2xl border border-border bg-accent-soft p-10 sm:p-14 text-center">
           <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
-            Start the Word Stream
+            Start Study Radio
           </h2>
           <p className="mt-3 text-ink-muted max-w-md mx-auto">
             Let a new word arrive every 30 seconds — pause, skip, or save any word along the way.
@@ -123,7 +123,7 @@ export default function HomePage() {
             href="/stream"
             className="mt-6 inline-block rounded-full bg-accent px-7 py-3 text-sm font-medium text-accent-contrast hover:bg-accent-strong transition-colors"
           >
-            Open the Word Stream
+            Open Study Radio
           </Link>
         </div>
       </section>

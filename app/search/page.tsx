@@ -57,7 +57,7 @@ function SearchPageInner() {
       </form>
 
       {!query.trim() && (
-        <p className="text-ink-muted">Search across every part of Lexicon at once.</p>
+        <p className="text-ink-muted">Search across every part of OffStudies at once.</p>
       )}
 
       {query.trim() && totalCount === 0 && (

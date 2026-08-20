@@ -15,7 +15,7 @@ export default function QuizPage() {
       <p className="text-xs uppercase tracking-widest text-accent font-medium mb-2">Quiz</p>
       <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">Test your knowledge</h1>
       <p className="text-ink-muted max-w-xl mb-10">
-        Every question is generated from content already in Lexicon — pick a mode to start.
+        Every question is generated from content already in OffStudies — pick a mode to start.
       </p>
 
       <div className="grid sm:grid-cols-3 gap-5">

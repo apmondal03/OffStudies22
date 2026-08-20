@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { Mail, LogOut, CheckCircle2, RefreshCw } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Mail, LogOut, CheckCircle2, RefreshCw, UserX } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { pushAllProgress } from "@/lib/sync/progressSync";
+import { isRegistrationEnabled } from "@/lib/admin/settings";
 
 export default function AccountPage() {
   const { user, loading, isConfigured, signInWithEmail, signOut } = useAuth();
@@ -12,6 +13,13 @@ export default function AccountPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [syncing, setSyncing] = useState(false);
   const [lastSynced, setLastSynced] = useState<string | null>(null);
+  const [registrationEnabled, setRegistrationEnabled] = useState(true);
+
+  useEffect(() => {
+    isRegistrationEnabled()
+      .then(setRegistrationEnabled)
+      .catch(() => setRegistrationEnabled(true));
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -47,6 +55,19 @@ export default function AccountPage() {
 
   if (loading) {
     return <div className="mx-auto max-w-md px-4 sm:px-6 py-16 text-center text-ink-muted">Loading…</div>;
+  }
+
+  if (!user && !registrationEnabled) {
+    return (
+      <div className="mx-auto max-w-md px-4 sm:px-6 py-16 text-center">
+        <UserX className="mx-auto h-8 w-8 text-ink-faint mb-3" strokeWidth={1.5} />
+        <h1 className="font-display text-2xl tracking-tight mb-2">Sign-ins are paused</h1>
+        <p className="text-ink-muted">
+          New accounts aren&apos;t being created right now. Everything still works fully
+          offline — your progress is just saved on this device until sign-in reopens.
+        </p>
+      </div>
+    );
   }
 
   if (!user) {

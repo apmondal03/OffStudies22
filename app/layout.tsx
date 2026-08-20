@@ -36,11 +36,11 @@ const baloo = Baloo_2({
 
 export const metadata: Metadata = {
   title: {
-    default: "Lexicon — Understand words. Remember them.",
-    template: "%s | Lexicon",
+    default: "OffStudies — Understand words. Remember them.",
+    template: "%s | OffStudies",
   },
   description:
-    "A modern English dictionary and vocabulary learning app. Explore the Core 3000, hear pronunciations, and build your vocabulary with the ambient Word Stream.",
+    "A modern English dictionary and vocabulary learning app. Explore the Core 3000, hear pronunciations, and build your vocabulary with the ambient Study Radio.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

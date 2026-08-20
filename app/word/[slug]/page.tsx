@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { dictionaryProvider } from "@/lib/dictionary";
 import { getCoreEntryBySlug } from "@/lib/dictionary/coreList";
+import { getAdvancedEntryBySlug } from "@/lib/dictionary/advancedList";
 import { getPublicAdminEntryBySlug } from "@/lib/admin/content";
 import { toWordEntry } from "@/lib/admin/mappers";
 import { CefrBadge } from "@/components/ui/CefrBadge";
@@ -19,10 +20,14 @@ import {
   CommonMistakesSection,
 } from "@/components/dictionary/WordDetailSections";
 import { RelatedEncyclopediaSection } from "@/components/dictionary/RelatedEncyclopediaSection";
+import { RelatedPhrasalVerbsAndIdiomsSection } from "@/components/dictionary/RelatedPhrasalVerbsAndIdiomsSection";
+import { SearchBar } from "@/components/dictionary/SearchBar";
 
 function wordFromSlug(slug: string): string {
   const core = getCoreEntryBySlug(slug);
   if (core) return core.word;
+  const advanced = getAdvancedEntryBySlug(slug);
+  if (advanced) return advanced.word;
   return slug.replace(/-/g, " ");
 }
 
@@ -92,11 +97,15 @@ export default async function WordPage({
 
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6 py-10 sm:py-16">
-      <nav className="mb-8 text-sm text-ink-faint" aria-label="Breadcrumb">
-        <Link href="/explore" className="hover:text-ink">Explore</Link>
+      <nav className="mb-6 text-sm text-ink-faint" aria-label="Breadcrumb">
+        <Link href="/explore" className="hover:text-ink">Core 3000</Link>
         <span className="mx-1.5">/</span>
         <span className="text-ink">{entry.word}</span>
       </nav>
+
+      <div className="mb-8">
+        <SearchBar placeholder="Look up another word…" />
+      </div>
 
       <header>
         <div className="flex flex-wrap items-start justify-between gap-4">
@@ -128,6 +137,7 @@ export default async function WordPage({
         <UsageNotesSection entry={entry} />
         <CommonMistakesSection entry={entry} />
         <RelatedEncyclopediaSection word={entry.word} />
+        <RelatedPhrasalVerbsAndIdiomsSection word={entry.word} />
       </div>
     </div>
   );

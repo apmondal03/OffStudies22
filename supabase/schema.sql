@@ -112,3 +112,42 @@ create policy "Authenticated users can delete admin content"
 create trigger admin_content_set_updated_at
   before update on public.admin_content
   for each row execute function public.set_updated_at();
+
+-- ===================================================================
+-- App settings (single-row config, controlled from /admin)
+-- ===================================================================
+-- Currently just registration_enabled: an admin-controlled kill switch for
+-- new sign-ups, so anyone can be prevented from creating an account (and
+-- consuming database/auth resources) without touching code or env vars.
+-- Existing signed-in sessions are never affected by this — it only gates
+-- NEW sign-in attempts.
+
+create table if not exists public.app_settings (
+  id boolean primary key default true,  -- always exactly one row (id = true)
+  registration_enabled boolean not null default true,
+  updated_at timestamptz not null default now(),
+
+  constraint app_settings_single_row check (id)
+);
+
+insert into public.app_settings (id, registration_enabled)
+values (true, true)
+on conflict (id) do nothing;
+
+alter table public.app_settings enable row level security;
+
+-- Anyone can read (the sign-in page needs to check this before showing the
+-- form, even for a visitor who isn't signed in yet).
+create policy "Anyone can read app settings"
+  on public.app_settings for select
+  using (true);
+
+-- Only signed-in users can write — real admin-only enforcement happens in
+-- the app layer (lib/admin/auth.ts), same pattern as admin_content.
+create policy "Authenticated users can update app settings"
+  on public.app_settings for update
+  using (auth.uid() is not null);
+
+create trigger app_settings_set_updated_at
+  before update on public.app_settings
+  for each row execute function public.set_updated_at();

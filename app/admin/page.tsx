@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Layers } from "lucide-react";
 import { ADMIN_MODULES } from "@/lib/admin/registry";
+import { isRegistrationEnabled } from "@/lib/admin/settings";
+import { RegistrationToggle } from "@/components/admin/RegistrationToggle";
 
-export default function AdminDashboardPage() {
+export default async function AdminDashboardPage() {
+  const registrationEnabled = await isRegistrationEnabled();
+
   return (
     <div>
       <h1 className="font-display text-3xl tracking-tight mb-2">Content</h1>
@@ -26,6 +30,13 @@ export default function AdminDashboardPage() {
             </div>
           </Link>
         ))}
+      </div>
+
+      <div className="mt-8 pt-6 border-t border-border">
+        <p className="text-xs uppercase tracking-widest text-ink-faint font-medium mb-3">
+          Settings
+        </p>
+        <RegistrationToggle initialEnabled={registrationEnabled} />
       </div>
 
       <div className="mt-8 pt-6 border-t border-border">
