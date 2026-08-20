@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
       return;
     }
 
-    const { error } = await signInWithEmail(email);
+    const { error } = await signInWithEmail(email, "/admin");
     if (error) {
       setStatus("error");
       setErrorMessage(error);
