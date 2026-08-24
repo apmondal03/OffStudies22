@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDiscoveryBySlug } from "@/lib/discovery/selection";
 import { getPublicAdminEntryBySlug } from "@/lib/admin/content";
+import { getEntryImageOverride } from "@/lib/admin/entryImages";
 import { toDiscoveryEntry } from "@/lib/admin/mappers";
 import { DISCOVERY_CATEGORY_LABEL } from "@/types/discovery";
 import { EncyclopediaCard } from "@/components/dictionary/EncyclopediaCard";
@@ -11,12 +12,27 @@ import { encyclopediaModule } from "@/lib/modules/encyclopedia";
 
 // The static list is checked first (fast, no network) — the database is
 // only consulted as a fallback for slugs that aren't in the built-in set,
-// i.e. entries added through /admin/encyclopedia.
+// i.e. entries added through /admin/encyclopedia. Either way, if the
+// resolved entry doesn't already have its own image (built-in entries
+// never do; admin-added ones manage their own via the regular edit form),
+// check for a photo attached separately through /admin/encyclopedia-photos
+// — the only way to add a photo to a built-in entry at all.
 async function findEntry(slug: string) {
   const staticEntry = getDiscoveryBySlug(slug);
-  if (staticEntry) return staticEntry;
-  const row = await getPublicAdminEntryBySlug("encyclopedia", slug);
-  return row ? toDiscoveryEntry(row) : null;
+  let entry = staticEntry;
+
+  if (!entry) {
+    const row = await getPublicAdminEntryBySlug("encyclopedia", slug);
+    entry = row ? toDiscoveryEntry(row) : undefined;
+  }
+  if (!entry) return null;
+
+  if (!entry.imageUrl) {
+    const override = await getEntryImageOverride("encyclopedia", slug);
+    if (override) return { ...entry, imageUrl: override };
+  }
+
+  return entry;
 }
 
 export async function generateMetadata({

@@ -181,3 +181,42 @@ create policy "Authenticated users can update content images"
 create policy "Authenticated users can delete content images"
   on storage.objects for delete
   using (bucket_id = 'content-images' and auth.uid() is not null);
+
+-- ===================================================================
+-- Entry image overrides
+-- ===================================================================
+-- Lets an admin attach or replace a photo on ANY entry — including the
+-- 150 built-in Encyclopedia entries, which otherwise can't be edited at
+-- all (they live in lib/discovery/data.ts, not the database). This is
+-- deliberately separate from admin_content: it only ever stores one
+-- thing (an image URL) for a (module_id, slug) pair, whether or not that
+-- slug corresponds to a built-in entry or an admin-added one — a much
+-- narrower, lower-risk change than teaching the whole admin content
+-- system to let built-in entries be "edited."
+
+create table if not exists public.entry_image_overrides (
+  module_id text not null,
+  slug text not null,
+  image_url text not null,
+  updated_at timestamptz not null default now(),
+
+  primary key (module_id, slug)
+);
+
+alter table public.entry_image_overrides enable row level security;
+
+create policy "Anyone can read entry image overrides"
+  on public.entry_image_overrides for select
+  using (true);
+
+create policy "Authenticated users can upsert entry image overrides"
+  on public.entry_image_overrides for insert
+  with check (auth.uid() is not null);
+
+create policy "Authenticated users can update entry image overrides"
+  on public.entry_image_overrides for update
+  using (auth.uid() is not null);
+
+create trigger entry_image_overrides_set_updated_at
+  before update on public.entry_image_overrides
+  for each row execute function public.set_updated_at();

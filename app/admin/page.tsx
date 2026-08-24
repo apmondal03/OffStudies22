@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Layers } from "lucide-react";
+import { Layers, ImageIcon } from "lucide-react";
 import { ADMIN_MODULES } from "@/lib/admin/registry";
 import { isRegistrationEnabled } from "@/lib/admin/settings";
 import { RegistrationToggle } from "@/components/admin/RegistrationToggle";
@@ -30,6 +30,18 @@ export default async function AdminDashboardPage() {
             </div>
           </Link>
         ))}
+        <Link
+          href="/admin/encyclopedia-photos"
+          className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 hover:border-accent transition-colors"
+        >
+          <ImageIcon className="h-6 w-6 text-accent shrink-0" strokeWidth={1.75} />
+          <div>
+            <p className="font-display text-lg">Encyclopedia photos</p>
+            <p className="text-sm text-ink-muted">
+              Add or replace a photo on any entry — including the built-in ones.
+            </p>
+          </div>
+        </Link>
       </div>
 
       <div className="mt-8 pt-6 border-t border-border">

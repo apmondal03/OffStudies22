@@ -25,7 +25,7 @@ export function EncyclopediaCard({
             width={640}
             height={220}
             unoptimized
-            className="h-44 sm:h-52 w-full rounded-2xl object-cover"
+            className="h-48 sm:h-56 w-full rounded-2xl object-cover"
           />
           <p className="mt-4 text-xs uppercase tracking-widest text-accent font-medium mb-1.5">
             {DISCOVERY_CATEGORY_LABEL[entry.category]}

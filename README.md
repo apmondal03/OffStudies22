@@ -149,6 +149,38 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Photos on built-in Encyclopedia entries (`/admin/encyclopedia-photos`)
+
+The original image-upload feature only worked for entries an admin
+*creates* — the 150 built-in entries (Lion, Mars, Penguin, etc.) live in
+`lib/discovery/data.ts`, not the database, so there was never a way to
+attach a photo to one of them at all.
+
+**Deliberately built as a separate, narrow system rather than extending
+the generic admin content editor to support "editing" built-in entries.**
+The generic system (`lib/admin/content.ts`, used by all 6 modules) assumes
+every editable entry lives in the database; teaching it that a *subset* of
+Grammar/Idioms/etc. entries can also be "built-in but partially editable"
+would have meant real new complexity spreading across every module, for a
+capability only Encyclopedia actually needs.
+
+- **A new table, `entry_image_overrides`** (`module_id`, `slug`,
+  `image_url`) — stores nothing but a photo per entry, independent of
+  whether that entry is built-in or admin-added.
+- **`/admin/encyclopedia-photos`** lists all 150 built-in entries with a
+  search box (finding one entry among 150 by scrolling wasn't practical)
+  and a thumbnail showing its current photo or emoji fallback.
+- **`/admin/encyclopedia-photos/[slug]`** — upload or replace that one
+  entry's photo.
+- **On the public side**, `/encyclopedia/[slug]` checks for an override
+  only when the resolved entry doesn't already have its own image — an
+  admin-*created* entry's photo (set via its own edit form) is never
+  second-guessed by this separate system; only built-in entries, which
+  never have one of their own, actually use the override.
+- **Image size increased slightly** (h-44/h-52 → h-48/h-56 — roughly
+  16px taller on mobile, in the ballpark of "a few millimeters" at
+  screen scale) — a deliberately modest bump, not a redesign.
+
 ## Dedicated admin login (`/admin-login`) — a real bug fix
 
 A genuine bug, not a hypothetical: pausing new sign-ins (the registration
