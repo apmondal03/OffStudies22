@@ -37,7 +37,9 @@ export function useAuth() {
       email,
       options: {
         emailRedirectTo:
-          typeof window !== "undefined" ? `${window.location.origin}${redirectPath}` : undefined,
+          typeof window !== "undefined"
+            ? `${window.location.origin}/auth/confirm?next=${encodeURIComponent(redirectPath)}`
+            : undefined,
       },
     });
     return { error: error?.message ?? null };

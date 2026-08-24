@@ -149,6 +149,38 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Magic-link callback route (`/auth/confirm`) — a real bug fix
+
+Every magic link — general sign-in and admin sign-in alike — used to point
+`emailRedirectTo` straight at a server-rendered page (`/account` or
+`/admin`). That reliably failed: the destination page's own server-side
+"are you signed in?" check runs on the very first request, before the
+browser's JavaScript has even loaded to process the link — so it always
+said no and bounced back to sign-in, no matter how valid the link was.
+For `/admin` specifically, this made admin sign-in completely unusable.
+
+**Fixed with the standard pattern for this exact problem**: `app/auth/
+confirm/route.ts` is a server-side Route Handler that every magic link now
+points to instead. It exchanges the link's code/token for a session
+*server-side* — which lets Supabase set the session cookie via a
+`Set-Cookie` response header — and only redirects to the real destination
+(passed through as a `?next=` parameter) once that's done. By the time the
+destination page's own auth check runs, the session already exists from
+the server's point of view.
+
+- `hooks/useAuth.ts`'s `signInWithEmail` now builds
+  `emailRedirectTo` as `/auth/confirm?next=<redirectPath>` instead of
+  `redirectPath` directly — the one-line change that routes every sign-in
+  through the new callback.
+- Handles both of Supabase's link formats (`code` for PKCE exchange,
+  `token_hash` + `type` for OTP verification), since which one arrives
+  depends on project-level auth settings this app doesn't control.
+- **Worth checking in Supabase's dashboard**: if your project's
+  Authentication → URL Configuration → Redirect URLs allowlist is a
+  specific list of paths rather than a wildcard (`your-domain/**`), add
+  `/auth/confirm` to it — otherwise Supabase will reject the redirect
+  before this route ever runs.
+
 ## Photos on built-in Encyclopedia entries (`/admin/encyclopedia-photos`)
 
 The original image-upload feature only worked for entries an admin
