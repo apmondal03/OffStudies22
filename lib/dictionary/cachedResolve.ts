@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import { resolveWordOnServer, slugify } from "./freeDictionaryProvider";
 import { getCachedWord, saveCachedWord, isCacheStale } from "./wordCache";
 import type { WordEntry } from "@/types/dictionary";
@@ -27,7 +28,14 @@ export async function resolveWordWithCache(word: string): Promise<WordEntry | nu
   const result = await resolveWordOnServer(word);
 
   if (result) {
-    await saveCachedWord(slug, word, result);
+    // Deliberately not awaited on the response path — saving to the
+    // cache should never delay showing the user their result, since the
+    // whole point of caching is to make future lookups faster, not to
+    // slow this one down. `after()` (not a bare unawaited call) keeps
+    // the function alive long enough for the write to actually finish
+    // after the response is sent, rather than risking it getting killed
+    // mid-write the instant the response goes out.
+    after(() => saveCachedWord(slug, word, result));
     return result;
   }
 
