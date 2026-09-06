@@ -1,0 +1,1094 @@
+[
+  {
+    "id": "ambiguous",
+    "word": "ambiguous",
+    "slug": "ambiguous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "arbitrary",
+    "word": "arbitrary",
+    "slug": "arbitrary",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "coherent",
+    "word": "coherent",
+    "slug": "coherent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "comprehensive",
+    "word": "comprehensive",
+    "slug": "comprehensive",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "contentious",
+    "word": "contentious",
+    "slug": "contentious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "conventional",
+    "word": "conventional",
+    "slug": "conventional",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "credible",
+    "word": "credible",
+    "slug": "credible",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "discrete",
+    "word": "discrete",
+    "slug": "discrete",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "explicit",
+    "word": "explicit",
+    "slug": "explicit",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "implicit",
+    "word": "implicit",
+    "slug": "implicit",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "inherent",
+    "word": "inherent",
+    "slug": "inherent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "intrinsic",
+    "word": "intrinsic",
+    "slug": "intrinsic",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "notorious",
+    "word": "notorious",
+    "slug": "notorious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "plausible",
+    "word": "plausible",
+    "slug": "plausible",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "pragmatic",
+    "word": "pragmatic",
+    "slug": "pragmatic",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "prevalent",
+    "word": "prevalent",
+    "slug": "prevalent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "profound",
+    "word": "profound",
+    "slug": "profound",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "rigorous",
+    "word": "rigorous",
+    "slug": "rigorous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "subtle",
+    "word": "subtle",
+    "slug": "subtle",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "substantial",
+    "word": "substantial",
+    "slug": "substantial",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "tangible",
+    "word": "tangible",
+    "slug": "tangible",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "viable",
+    "word": "viable",
+    "slug": "viable",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "volatile",
+    "word": "volatile",
+    "slug": "volatile",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "compelling",
+    "word": "compelling",
+    "slug": "compelling",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "controversial",
+    "word": "controversial",
+    "slug": "controversial",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "cumulative",
+    "word": "cumulative",
+    "slug": "cumulative",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "decisive",
+    "word": "decisive",
+    "slug": "decisive",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "distinctive",
+    "word": "distinctive",
+    "slug": "distinctive",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "elaborate",
+    "word": "elaborate",
+    "slug": "elaborate",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "exemplary",
+    "word": "exemplary",
+    "slug": "exemplary",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "formidable",
+    "word": "formidable",
+    "slug": "formidable",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "indispensable",
+    "word": "indispensable",
+    "slug": "indispensable",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "meticulous",
+    "word": "meticulous",
+    "slug": "meticulous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "nuanced",
+    "word": "nuanced",
+    "slug": "nuanced",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "obsolete",
+    "word": "obsolete",
+    "slug": "obsolete",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "prominent",
+    "word": "prominent",
+    "slug": "prominent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "resilient",
+    "word": "resilient",
+    "slug": "resilient",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "skeptical",
+    "word": "skeptical",
+    "slug": "skeptical",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "ubiquitous",
+    "word": "ubiquitous",
+    "slug": "ubiquitous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "intangible",
+    "word": "intangible",
+    "slug": "intangible",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "accumulate",
+    "word": "accumulate",
+    "slug": "accumulate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "advocate",
+    "word": "advocate",
+    "slug": "advocate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "allocate",
+    "word": "allocate",
+    "slug": "allocate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "ascertain",
+    "word": "ascertain",
+    "slug": "ascertain",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "circumvent",
+    "word": "circumvent",
+    "slug": "circumvent",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "compile",
+    "word": "compile",
+    "slug": "compile",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "comprise",
+    "word": "comprise",
+    "slug": "comprise",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "conceive",
+    "word": "conceive",
+    "slug": "conceive",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "consolidate",
+    "word": "consolidate",
+    "slug": "consolidate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "constitute",
+    "word": "constitute",
+    "slug": "constitute",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "deduce",
+    "word": "deduce",
+    "slug": "deduce",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "delegate",
+    "word": "delegate",
+    "slug": "delegate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "derive",
+    "word": "derive",
+    "slug": "derive",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "deviate",
+    "word": "deviate",
+    "slug": "deviate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "differentiate",
+    "word": "differentiate",
+    "slug": "differentiate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "diminish",
+    "word": "diminish",
+    "slug": "diminish",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "discern",
+    "word": "discern",
+    "slug": "discern",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "disseminate",
+    "word": "disseminate",
+    "slug": "disseminate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "elicit",
+    "word": "elicit",
+    "slug": "elicit",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "exacerbate",
+    "word": "exacerbate",
+    "slug": "exacerbate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "facilitate",
+    "word": "facilitate",
+    "slug": "facilitate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "formulate",
+    "word": "formulate",
+    "slug": "formulate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "hinder",
+    "word": "hinder",
+    "slug": "hinder",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "implement",
+    "word": "implement",
+    "slug": "implement",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "incorporate",
+    "word": "incorporate",
+    "slug": "incorporate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "infer",
+    "word": "infer",
+    "slug": "infer",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "intervene",
+    "word": "intervene",
+    "slug": "intervene",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "mitigate",
+    "word": "mitigate",
+    "slug": "mitigate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "negate",
+    "word": "negate",
+    "slug": "negate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "perpetuate",
+    "word": "perpetuate",
+    "slug": "perpetuate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "portray",
+    "word": "portray",
+    "slug": "portray",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "presume",
+    "word": "presume",
+    "slug": "presume",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "prioritize",
+    "word": "prioritize",
+    "slug": "prioritize",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "reconcile",
+    "word": "reconcile",
+    "slug": "reconcile",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "reinforce",
+    "word": "reinforce",
+    "slug": "reinforce",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "scrutinize",
+    "word": "scrutinize",
+    "slug": "scrutinize",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "substantiate",
+    "word": "substantiate",
+    "slug": "substantiate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "undermine",
+    "word": "undermine",
+    "slug": "undermine",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "validate",
+    "word": "validate",
+    "slug": "validate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "yield",
+    "word": "yield",
+    "slug": "yield",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "ambiguity",
+    "word": "ambiguity",
+    "slug": "ambiguity",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "assumption",
+    "word": "assumption",
+    "slug": "assumption",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "attribute",
+    "word": "attribute",
+    "slug": "attribute",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "consensus",
+    "word": "consensus",
+    "slug": "consensus",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "constraint",
+    "word": "constraint",
+    "slug": "constraint",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "contradiction",
+    "word": "contradiction",
+    "slug": "contradiction",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "controversy",
+    "word": "controversy",
+    "slug": "controversy",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "credibility",
+    "word": "credibility",
+    "slug": "credibility",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "dilemma",
+    "word": "dilemma",
+    "slug": "dilemma",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "discrepancy",
+    "word": "discrepancy",
+    "slug": "discrepancy",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "hierarchy",
+    "word": "hierarchy",
+    "slug": "hierarchy",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "implication",
+    "word": "implication",
+    "slug": "implication",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "incentive",
+    "word": "incentive",
+    "slug": "incentive",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "integrity",
+    "word": "integrity",
+    "slug": "integrity",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "momentum",
+    "word": "momentum",
+    "slug": "momentum",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "paradox",
+    "word": "paradox",
+    "slug": "paradox",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "parameter",
+    "word": "parameter",
+    "slug": "parameter",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "premise",
+    "word": "premise",
+    "slug": "premise",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "prerequisite",
+    "word": "prerequisite",
+    "slug": "prerequisite",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "resilience",
+    "word": "resilience",
+    "slug": "resilience",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "arguably",
+    "word": "arguably",
+    "slug": "arguably",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "inevitably",
+    "word": "inevitably",
+    "slug": "inevitably",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "predominantly",
+    "word": "predominantly",
+    "slug": "predominantly",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "presumably",
+    "word": "presumably",
+    "slug": "presumably",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "subsequently",
+    "word": "subsequently",
+    "slug": "subsequently",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "conversely",
+    "word": "conversely",
+    "slug": "conversely",
+    "partOfSpeech": "adverb",
+    "cefrLevel": "C1"
+  },
+  {
+    "id": "capricious",
+    "word": "capricious",
+    "slug": "capricious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "cogent",
+    "word": "cogent",
+    "slug": "cogent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "ephemeral",
+    "word": "ephemeral",
+    "slug": "ephemeral",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "esoteric",
+    "word": "esoteric",
+    "slug": "esoteric",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "fastidious",
+    "word": "fastidious",
+    "slug": "fastidious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "gratuitous",
+    "word": "gratuitous",
+    "slug": "gratuitous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "idiosyncratic",
+    "word": "idiosyncratic",
+    "slug": "idiosyncratic",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "ineffable",
+    "word": "ineffable",
+    "slug": "ineffable",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "insidious",
+    "word": "insidious",
+    "slug": "insidious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "intransigent",
+    "word": "intransigent",
+    "slug": "intransigent",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "magnanimous",
+    "word": "magnanimous",
+    "slug": "magnanimous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "nebulous",
+    "word": "nebulous",
+    "slug": "nebulous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "obsequious",
+    "word": "obsequious",
+    "slug": "obsequious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "parsimonious",
+    "word": "parsimonious",
+    "slug": "parsimonious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "perfunctory",
+    "word": "perfunctory",
+    "slug": "perfunctory",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "pernicious",
+    "word": "pernicious",
+    "slug": "pernicious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "quintessential",
+    "word": "quintessential",
+    "slug": "quintessential",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "recalcitrant",
+    "word": "recalcitrant",
+    "slug": "recalcitrant",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "sanguine",
+    "word": "sanguine",
+    "slug": "sanguine",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "surreptitious",
+    "word": "surreptitious",
+    "slug": "surreptitious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "tenuous",
+    "word": "tenuous",
+    "slug": "tenuous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "vindictive",
+    "word": "vindictive",
+    "slug": "vindictive",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "voracious",
+    "word": "voracious",
+    "slug": "voracious",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "zealous",
+    "word": "zealous",
+    "slug": "zealous",
+    "partOfSpeech": "adjective",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "acquiesce",
+    "word": "acquiesce",
+    "slug": "acquiesce",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "ameliorate",
+    "word": "ameliorate",
+    "slug": "ameliorate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "assuage",
+    "word": "assuage",
+    "slug": "assuage",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "capitulate",
+    "word": "capitulate",
+    "slug": "capitulate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "conflate",
+    "word": "conflate",
+    "slug": "conflate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "denigrate",
+    "word": "denigrate",
+    "slug": "denigrate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "deprecate",
+    "word": "deprecate",
+    "slug": "deprecate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "equivocate",
+    "word": "equivocate",
+    "slug": "equivocate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "exculpate",
+    "word": "exculpate",
+    "slug": "exculpate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "extrapolate",
+    "word": "extrapolate",
+    "slug": "extrapolate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "mollify",
+    "word": "mollify",
+    "slug": "mollify",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "obfuscate",
+    "word": "obfuscate",
+    "slug": "obfuscate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "placate",
+    "word": "placate",
+    "slug": "placate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "proliferate",
+    "word": "proliferate",
+    "slug": "proliferate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "repudiate",
+    "word": "repudiate",
+    "slug": "repudiate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "vindicate",
+    "word": "vindicate",
+    "slug": "vindicate",
+    "partOfSpeech": "verb",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "acumen",
+    "word": "acumen",
+    "slug": "acumen",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "anomaly",
+    "word": "anomaly",
+    "slug": "anomaly",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "antithesis",
+    "word": "antithesis",
+    "slug": "antithesis",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "catalyst",
+    "word": "catalyst",
+    "slug": "catalyst",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "conundrum",
+    "word": "conundrum",
+    "slug": "conundrum",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "hegemony",
+    "word": "hegemony",
+    "slug": "hegemony",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "juxtaposition",
+    "word": "juxtaposition",
+    "slug": "juxtaposition",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "paradigm",
+    "word": "paradigm",
+    "slug": "paradigm",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "proclivity",
+    "word": "proclivity",
+    "slug": "proclivity",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  },
+  {
+    "id": "vicissitude",
+    "word": "vicissitude",
+    "slug": "vicissitude",
+    "partOfSpeech": "noun",
+    "cefrLevel": "C2"
+  }
+]
