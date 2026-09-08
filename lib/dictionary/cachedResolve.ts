@@ -21,8 +21,14 @@ export async function resolveWordWithCache(word: string): Promise<WordEntry | nu
   const slug = slugify(word);
 
   const cached = await getCachedWord(slug);
-  if (cached && !isCacheStale(cached.updated_at)) {
-    return cached.data;
+  if (cached) {
+    // Hand-authored entries (source "own") are permanent — there's no
+    // live source to refresh them from, and a live fetch must never be
+    // allowed to silently overwrite deliberately-written content with
+    // whatever the external API happens to return for the same word.
+    // Skip the live fetch entirely rather than merely checking staleness.
+    if (cached.source === "own") return cached.data;
+    if (!isCacheStale(cached.updated_at)) return cached.data;
   }
 
   const result = await resolveWordOnServer(word);

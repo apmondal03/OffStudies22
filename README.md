@@ -149,6 +149,56 @@ a "ready for more?" banner linking to the full adult `/stream`. Makes the
 handoff to the main app feel intentional and earned rather than just another
 link in a footer.
 
+## Our own dictionary (`/admin/dictionary-words`)
+
+Built directly in response to a real event: the live dictionary API this
+app depends on for definitions went down (Cloudflare 522) during actual
+use. Caching (above) already means already-looked-up words survive an
+outage like that — this closes the other half: a way to write real,
+permanent content that never depends on that API being up at all.
+
+**Genuinely integrated, not a separate system** — the explicit design
+goal for this feature. It writes into the exact same `cached_words` table,
+in the exact same `WordEntry` shape, that auto-caching already uses. No
+new table, no new word page, no separate browsing experience:
+`/word/[slug]` and `/dictionary` (Complete Dictionary) both already read
+from this table, so a hand-written word shows up through them
+automatically, with zero changes needed to either.
+
+- **The one real distinction**: a `source` column already existed on
+  `cached_words` (previously always `"wiktionary"`, since that's all that
+  ever wrote to it). Hand-authored entries are tagged `source: "own"`
+  instead — and `resolveWordWithCache` was updated to treat that tag as
+  permanent: skips the staleness check entirely, and never calls the live
+  API for that word at all, so a hand-written entry can never be silently
+  overwritten by whatever a live fetch happens to return later.
+- **`/admin/dictionary-words`** lists everything hand-written so far, with
+  an "Add word" form (word, part of speech, CEFR level, full definition,
+  simple definition, examples, synonyms — the same fields Core 3000 and
+  Advanced 1500 entries have).
+- **Any already-cached word can be "claimed"** — going directly to
+  `/admin/dictionary-words/<slug>` for a word that's currently shown via
+  a live lookup pre-fills the form with that content as a starting point;
+  saving converts it to a permanent, hand-owned entry from then on.
+- **`/admin/dictionary-words/import`** — bulk-add via CSV, reusing the
+  exact same field-schema-driven template/parse utilities
+  (`lib/admin/csv.ts`) every other admin CSV import already uses, even
+  though this content doesn't live in the shared `admin_content` table
+  those were originally built for. One real build error surfaced and got
+  fixed while wiring this up: the field-schema constant was first placed
+  inside the same file as the Server Actions, but Next.js requires every
+  export from a `"use server"` file to be an async function — a plain
+  array constant isn't allowed there at all, and the build caught it
+  immediately. Fixed by moving the schema into its own plain file
+  (`lib/admin/ownWordFields.ts`), imported by both the Server Action and
+  the client-side template-download button.
+- **Scoped honestly**: this starts at zero words, same as the Complete
+  Dictionary cache did. Given the Oxford English Dictionary lists
+  171,476 words in current use, this is explicitly framed as a slow,
+  ongoing project — the same honest framing Advanced 1500 shipped with
+  (156 of a much larger eventual target) — not a claim of broad coverage
+  from day one.
+
 ## Complete Dictionary (`/dictionary`)
 
 A third tab alongside Core 3000 and Advanced 1500 — but a genuinely

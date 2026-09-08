@@ -74,3 +74,25 @@ export async function saveCachedWord(slug: string, word: string, data: WordEntry
     // fetched live again next time, same as if caching didn't exist.
   }
 }
+
+/**
+ * Writes a hand-authored entry — same table, same WordEntry shape as
+ * everything the live API produces, but tagged `source: "own"` so
+ * `resolveWordWithCache` knows to treat it as permanent: never refreshed
+ * for staleness, never overwritten by a live fetch for the same word.
+ * This is the one function admin content-authoring actually calls; the
+ * automatic per-lookup caching above always uses `saveCachedWord`
+ * instead, and always tags things "wiktionary" — the two paths are kept
+ * separate on purpose so a live-fetched cache entry can never be
+ * mistaken for deliberately-written content.
+ */
+export async function saveOwnWordEntry(slug: string, word: string, data: WordEntry): Promise<void> {
+  const supabase = await getSupabaseServerClient();
+  if (!supabase) throw new Error("Accounts aren't configured on this deployment.");
+
+  const { error } = await supabase
+    .from("cached_words")
+    .upsert({ slug, word, data, source: "own", fetched_at: new Date().toISOString() }, { onConflict: "slug" });
+
+  if (error) throw new Error(error.message);
+}
