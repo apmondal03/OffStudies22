@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Layers, ImageIcon, Database } from "lucide-react";
+import { Layers, ImageIcon, Database, BookOpenText } from "lucide-react";
 import { ADMIN_MODULES } from "@/lib/admin/registry";
 import { isRegistrationEnabled } from "@/lib/admin/settings";
 import { RegistrationToggle } from "@/components/admin/RegistrationToggle";
@@ -51,6 +51,18 @@ export default async function AdminDashboardPage() {
             <p className="font-display text-lg">Cached dictionary words</p>
             <p className="text-sm text-ink-muted">
               See how many words have been cached, and download them as JSON or CSV.
+            </p>
+          </div>
+        </Link>
+        <Link
+          href="/admin/dictionary-words"
+          className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 hover:border-accent transition-colors"
+        >
+          <BookOpenText className="h-6 w-6 text-accent shrink-0" strokeWidth={1.75} />
+          <div>
+            <p className="font-display text-lg">Our own dictionary</p>
+            <p className="text-sm text-ink-muted">
+              Write permanent word definitions by hand — never depends on the live API.
             </p>
           </div>
         </Link>
